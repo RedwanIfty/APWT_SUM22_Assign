@@ -24,3 +24,4 @@ Route::get('/login',[UserController::class,'login'])->name('user.login');
 Route::post('/login',[UserController::class,'loginAction'])->name('user.login.action');
 Route::get('/dashboard',[UserController::class,'dashboard'])->name('user.dashboard');
 Route::get('/user/details/{id}',[UserController::class,'details'])->name('user.details');
+Route::get('/adminDashboard',[UserController::class,'adminDashboard'])->name('user.admin.adashboard');

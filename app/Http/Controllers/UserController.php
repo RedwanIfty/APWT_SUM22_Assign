@@ -49,9 +49,19 @@ class UserController extends Controller
         ]);
         $users= User::where('email','=',$req->email)
         ->where('password','=',$req->password)->first();
-        //return $user;
+        //return $users;
         if($users){
-            return redirect()->route('user.dashboard');
+            $chk= User::where('type','=','Admin')
+            ->where('email','=',$req->email)
+            ->where('password','=',$req->password)->first();
+           // return $chk;
+            if($chk){
+                return "Another dashboard $chk";
+            }
+            else{
+                
+                return redirect()->route('user.dashboard');
+            }
         }
         else
             return redirect()->route('user.register');
@@ -65,5 +75,8 @@ class UserController extends Controller
         $users = User::where('id',$id)->get();
         return view('user.details')->with('users',$users);
          //return "details $id $users";
+    }
+    function adminDashboard(){
+        return "Admin dashboard";
     }
 }
